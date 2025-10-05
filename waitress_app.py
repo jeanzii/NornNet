@@ -80,16 +80,27 @@ except Exception as e:
 
 
 def main():
-    port = int(os.environ.get("HTTP_PLATFORM_PORT", 8080))
-    host = "127.0.0.1"  # Changed from 0.0.0.0 - try localhost only
+    # Determine port from environment (HTTP_PLATFORM_PORT set by IIS httpPlatform handler,
+    # or PORT common in other hosting environments). Fall back to 8080 if unset or invalid.
+    port_env = os.environ.get("HTTP_PLATFORM_PORT") or os.environ.get("PORT")
+    try:
+        port = int(port_env) if port_env else 8080
+    except Exception:
+        port = 8080
+
+    # Bind to all interfaces so the IIS front-end or reverse-proxy can reach the server.
+    host = os.environ.get("HOST") or "0.0.0.0"
 
     try:
         if logger:
             logger.info(f"Starting Waitress server on {host}:{port}")
             logger.info(f"HTTP_PLATFORM_PORT raw: {os.environ.get('HTTP_PLATFORM_PORT', 'NOT SET')}")
+            logger.info(f"PORT raw: {os.environ.get('PORT', 'NOT SET')}")
             logger.info(f"Host binding: {host}")
+            logger.info(f"Working directory: {os.getcwd()}")
         print(f"Starting Waitress server on {host}:{port}", flush=True)
         print(f"HTTP_PLATFORM_PORT: {os.environ.get('HTTP_PLATFORM_PORT', 'NOT SET')}", flush=True)
+        print(f"PORT: {os.environ.get('PORT', 'NOT SET')}", flush=True)
         print(f"Host: {host}", flush=True)
         print(f"Python PID: {os.getpid()}", flush=True)
     except Exception as e:
