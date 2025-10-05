@@ -1,4 +1,6 @@
-# Intro to Computer Science AI Flask Project
+# NornNet - The fates who weave destiny
+
+A private AI ChatBot
 
 ## Team Members
 
@@ -14,7 +16,7 @@
 - [Chapter.16_Web_Development.pdf](https://itinstructor.github.io/WNCCComputerScience/Python/Web_Development/Chapter.16_Web_Development.pdf)
 - [Flask Unit Converter](https://itinstructor.github.io/WNCCComputerScience/Python/Web_Development/Flask_Unit_Converter.pdf)
 
-## AIT Private ChatBot Research
+## AI Private ChatBot Research
 
 - [Network Chuck Private AI](https://www.youtube.com/watch?v=WxYC9-hBM_g)
 
@@ -275,6 +277,13 @@ A very simple website that displays a new, random quote each day.
 
 
 ## Project Names for Future Projects
+
+- OdinChat – wise and all-seeing.
+- LokiTalk – mischievous and clever, perfect for a witty assistant.
+- FenrirBot – fierce and untamed, for a bold AI.
+- ValhallaTalk – epic and heroic, for a grand assistant.
+- NornNet – named after the fates who weave destiny.
+- AsgardAI – the realm of the gods, lofty and powerful. 
 
 Project Ragnarok: While Ragnarok is the "end of the world," in a project context it can signify the final, ultimate version of a build or a stress-testing application designed to push a system to its limits.
 
