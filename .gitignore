@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+eggs/
+*.egg-info/
+venv/
+ENV/
+env/
+.venv/
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.pytest_cache/
+.coverage
+coverage.xml
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# IIS / Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+web.config
+
+# Recycle / temp
+recycle.ps1
+
+# Node modules (if present)
+node_modules/
+
+# Mac
+.DS_Store
