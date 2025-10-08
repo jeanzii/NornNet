@@ -15,10 +15,13 @@ A private AI ChatBot
 
 - [Chapter.16_Web_Development.pdf](https://itinstructor.github.io/WNCCComputerScience/Python/Web_Development/Chapter.16_Web_Development.pdf)
 - [Flask Unit Converter](https://itinstructor.github.io/WNCCComputerScience/Python/Web_Development/Flask_Unit_Converter.pdf)
+- [Flask Blog Tutorial](https://itinstructor.github.io/WNCCComputerScience/Python/Web_Development/Python_Flask_Blog_Tutorial.pdf)
 
 ## AI Private ChatBot Research
 
 - [Network Chuck Private AI](https://www.youtube.com/watch?v=WxYC9-hBM_g)
+- [How to Build a Local AI Agent With Python (Ollama, LangChain & RAG)](https://youtu.be/E4l91XKQSgw?si=Q-Unp9DOsImHkXbS)
+- [The Ultimate Guide to Local AI and AI Agents (The Future is Here)](https://youtu.be/mNcXue7X8H0?si=uSyVxAVtBBj1cMHZ)
 
 ## AI ChatBot Project (Public + Private AI options)
 
