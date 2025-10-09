@@ -4,12 +4,12 @@ A private AI ChatBot
 
 ## Team Members
 
+- Elizier Lamen
 - Owen Osmera
 - Christi Pendergraft
 - Joe Scott
 - Caleb Stewart
 - Shawn Noon
-- Elizier Lamen
 
 ## Flask Tutorials
 
@@ -19,9 +19,12 @@ A private AI ChatBot
 
 ## AI Private ChatBot Research
 
+- [LM Studio Tutorial: Run Large Language Models (LLM) on Your Laptop](https://youtu.be/ygUEbCpOOLg?si=udEcraHqxw08DPsN)
 - [Network Chuck Private AI](https://www.youtube.com/watch?v=WxYC9-hBM_g)
 - [How to Build a Local AI Agent With Python (Ollama, LangChain & RAG)](https://youtu.be/E4l91XKQSgw?si=Q-Unp9DOsImHkXbS)
 - [The Ultimate Guide to Local AI and AI Agents (The Future is Here)](https://youtu.be/mNcXue7X8H0?si=uSyVxAVtBBj1cMHZ)
+- [Part 1 - Run Ollama with Python in 5 Minutes (Full Setup Guide](https://youtu.be/7uTt5t0B3H0?si=wlLhD5IsrULHp54X)
+- [Part 2 - Local Ollama Chatbot in Python](https://youtu.be/CJVR4HE_j-0?si=2_1ByW7LU14GOgZ7)
 
 ## AI ChatBot Project (Public + Private AI options)
 
