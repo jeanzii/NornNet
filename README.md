@@ -1,4 +1,4 @@
-# NornNet - The fates who weave destiny
+# NornNet - Where the Fates Weave Destiny with a Touch of AI Magic
 
 A private AI ChatBot
 
@@ -26,39 +26,29 @@ A private AI ChatBot
 - [Part 1 - Run Ollama with Python in 5 Minutes (Full Setup Guide](https://youtu.be/7uTt5t0B3H0?si=wlLhD5IsrULHp54X)
 - [Part 2 - Local Ollama Chatbot in Python](https://youtu.be/CJVR4HE_j-0?si=2_1ByW7LU14GOgZ7)
 
-## AI ChatBot Project (Public + Private AI options)
+## AI ChatBot Project (Private AI options)
 
-Python Flask project to create a web chatbot. The plan supports two deployment modes so the team can choose based on resources and privacy needs:
+Python Flask project to create a web chatbot. Private mode: host an open-source model yourself (local server, private cloud, or on-prem) for full control over data and privacy.
 
-- Public mode: use the Hugging Face Inference API (quick to get started, minimal infra).
-- Private mode: host an open-source model yourself (local server, private cloud, or on-prem) for full control over data and privacy.
-
-Both modes use the same Flask frontend and chat UI; only the backend connector differs.
-
-### Project Outline: Flask Chatbot (Public or Private AI)
+### Project Outline: Flask Chatbot (Private AI)
 
 #### 1. Project Goal 🎯
 
-Build a reliable web chatbot. The app should let users exchange messages with an AI model and see streamed or batched responses. Provide two options:
+Build a reliable web chatbot. The app should let users exchange messages with an AI model and see streamed responses.
 
-- Fast prototype using the Hugging Face Inference API.
 - Privacy-first solution running a private model server (containerized) with secure access and logging controls.
 
 #### 2. Key Technologies
 
-- **Backend**: Python, Flask (chat endpoint and API connector)
-- **Frontend**: HTML, CSS, JavaScript (fetch/streaming)
-- **Public AI**: Hugging Face Inference API (requests)
-- **Private AI**: local model server (examples: Hugging Face's Text Generation Inference, vLLM, or a lightweight runtime like llama.cpp / GGML for CPU quantized models)
-- **Infra & DevOps**: Docker, docker-compose (or k8s), nginx or Traefik, certs
-- **Security & Config**: `python-dotenv`, vault or env-managed secrets
-- **Optional**: Redis (rate-limit, caching), SQLite/Postgres (simple session/log storage)
+- **Backend**: Python, Flask, Waitress (chat endpoint and API connector)
+- **Frontend**: HTML, CSS, JavaScript 
+- **Private AI**: local model server (lightweight runtime like llama.cpp / GGML for CPU quantized models)
 
 ---
 
 ### 3. Architecture & Implementation Plan
 
-High level: Client (browser) -> Flask app -> (Hugging Face API) OR (Private model server) -> Flask -> browser.
+High level: Client (browser) -> Flask app -> (Private model server) -> Flask -> browser.
 
 The implementation is split into phases so the team can ship incrementally.
 
@@ -73,18 +63,11 @@ The implementation is split into phases so the team can ship incrementally.
 - Use `main.js` to send user messages to `/chat` and append both user and bot messages to the DOM.
 - Implement a temporary backend response for testing (hardcoded echo).
 
-#### Phase 3A — Public AI Integration (Hugging Face)
+#### Phase 3 — Private AI Integration (self-hosted)
 
-- Add a connector module that calls the Hugging Face Inference API using an API token stored in `.env`.
-- Implement request shaping and basic error handling (timeouts, retries, rate-limit backoff).
-
-#### Phase 3B — Private AI Integration (self-hosted)
-
-- Choose a lightweight serving setup based on available hardware:
-  - CPU-only machines: prefer quantized models (GGML / llama.cpp) or small transformer models.
-  - GPU machines: use `text-generation-inference`, `vLLM`, or a container running Transformers with Triton/accelerated stack.
-- Containerize a model server and expose an internal HTTP endpoint. The Flask app calls the internal endpoint instead of the external API.
-- Secure the private server: mTLS / API key, and run behind nginx/Traefik; store keys in `.env` or a secret manager.
+- CPU-only machines: prefer quantized models (GGML / llama.cpp) or small transformer models.
+- Create a model server and expose an internal HTTP endpoint.
+- Secure the private server: mTLS / API key, and run behind an IIS server which runs waitress
 - Add support for streaming responses if the model server supports it.
 
 #### Phase 4 — Privacy, Logging & Data Handling
@@ -93,73 +76,63 @@ The implementation is split into phases so the team can ship incrementally.
 - Add a user-facing privacy notice and an opt-out for logging.
 - Implement retention policy and a script to sweep/delete logs older than X days.
 
-#### Phase 5 — Deploy & Ops (optional)
+#### Phase 5 — Deploy & Ops
 
-- Provide a `docker-compose.yml` that brings up the Flask app and (optionally) a local model server for private mode.
-- Add a `Makefile` or simple shell scripts to build and run locally.
 - Add health checks, simple metrics (request counts, success/failure), and basic monitoring instructions.
 
 ---
 
-### 4. Task Breakdown for 6 Students (Public + Private AI tasks)
+### 4. Task Breakdown
 
-This plan maps student roles so the same team can implement either the quick public mode or the privacy-oriented private mode.
+This plan maps team roles to implement the privacy-oriented private mode.
 
-#### Pair 1 — Frontend (UI/UX)
+#### Frontend (UI/UX)
 
-- Student 1 (HTML & Structure): `index.html` — chat layout, message list, input form.
-- Student 2 (CSS & Interactivity): `style.css` and `main.js` — chat bubbles, responsive layout, DOM updates, optimistic UI.
+- Team 1 (HTML & Structure): `index.html` — chat layout, message list, input form.
+- Team 2 (CSS & Interactivity): `style.css` and `main.js` — chat bubbles, responsive layout, DOM updates, optimistic UI.
 
 Shared goal: Deliver a clean, usable chat UI with graceful error states.
 
-#### Pair 2 — Backend (Flask Core)
+#### Backend (Flask Core)
 
-- Student 3 (Server & Routing): `app.py` — create routes, session handling, simple persistence for sessions.
-- Student 4 (Request & Response Handling): Implement `/chat` logic that validates input, forwards to the connector, and returns JSON or streaming responses.
+- Team 3 (Server & Routing): `app.py` — create routes, session handling, simple persistence for sessions.
+- Team 4 (Request & Response Handling): Implement `/chat` logic that validates input, forwards to the connector, and returns JSON or streaming responses.
 
 Shared goal: Reliable, well-documented endpoints and simple persistence for conversation history.
 
-#### Pair 3 — AI Integration & Ops
+#### AI Integration & Ops
 
-- Student 5 (Public AI Connector & Model Research): Implement the Hugging Face connector, token management, request shaping, and tests. Research candidate models and tradeoffs.
-- Student 6 (Private AI & Security): Implement local/private model server wiring (Dockerfile, `docker-compose`), secure the endpoint (API key), manage secrets in `.env`, and implement logging & retention rules. If hardware allows, tune for streaming and lower-latency inference.
-
-Shared goal: Provide two working connectors (Hugging Face + Private) and clear switching configuration for the Flask app.
+- Team 5 (Private AI & Security): Implement local/private model server wiring and implement logging & retention rules. If hardware allows, tune for streaming and lower-latency inference.
 
 Optional extras for the team:
 
 - Add unit/integration tests for the connector code.
 - Add a small evaluation page that replays test prompts and shows model outputs side-by-side.
-- Add simple cost/latency telemetry so the team can compare public vs private modes.
+- Add simple cost/latency telemetry so the team can compare different models.
 
 ---
 
 Notes and safety:
 
-- When using public APIs, never commit tokens to the repository. Always use `.env` and add it to `.gitignore`.
 - For private hosting, pick a model size that fits your hardware. Quantized CPU models are great for demos and privacy.
 - Make privacy decisions explicit in the app UI (logging on/off, data retention).
 
-
 **Shared Goal**: Create an intuitive and attractive user interface.
 
-#### **Pair 2: The Backend Team (Flask Core)** ⚙️
+#### **Team 2: The Backend Team (Flask Core)** ⚙️
 
 This pair builds the server-side foundation of the application.
 
-- **Student 3 (Server & Routing)**: Set up the `app.py` file, initialize the Flask application, and create the routes for the home page (`/`) and the chat endpoint (`/chat`).
-- **Student 4 (Request & Response Handling)**: Implement the logic within the routes to handle incoming `POST` requests from the frontend. Manage the data flow, ensuring that user input is correctly received and that responses are sent back in the proper JSON format.
+- **Team 3 (Server & Routing)**: Set up the `app.py` file, initialize the Flask application, and create the routes for the home page (`/`) and the chat endpoint (`/chat`).
+- **Team 4 (Request & Response Handling)**: Implement the logic within the routes to handle incoming `POST` requests from the frontend. Manage the data flow, ensuring that user input is correctly received and that responses are sent back in the proper JSON format.
 
 **Shared Goal**: Build a stable and reliable server that connects the frontend to the AI logic.
 
-#### **Pair 3: The AI Integration Team (API Connectors)** 🧠
+#### **Team 3: The AI Integration Team (API Connectors)** 🧠
 
 This pair focuses on the "smart" part of the chatbot.
 
-- **Student 5 (API Research & Logic)**: Research suitable conversational models on the Hugging Face Hub. Write the core Python function that takes a user's message, formats it correctly, and sends it to the Hugging Face Inference API.
-- **Student 6 (Security & Data Parsing)**: Responsible for securely managing the Hugging Face API token using a `.env` file. They will also write the code to parse the complex JSON response from the API, extract the meaningful text, and handle potential errors (like if the API is down).
-
-**Shared Goal**: Successfully connect to the Hugging Face API and reliably retrieve AI-generated responses.
+- **Team 5 (API Research & Logic)**: Research suitable conversational models on the Hugging Face Hub. Write the core Python function that takes a user's message, formats it correctly, and sends it to the Hugging Face Inference API.
 
 ## Project Ideas
 
