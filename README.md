@@ -1,4 +1,6 @@
-# NornNet - Where the Fates Weave Destiny with a Touch of AI Magic
+# NornNet
+
+Where the Fates Weave Destiny with a Touch of AI Magic
 
 A private AI ChatBot
 
