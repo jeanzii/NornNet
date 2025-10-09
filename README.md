@@ -1,8 +1,6 @@
 # NornNet
 
-Where the Fates Weave Destiny with a Touch of AI Magic
-
-A private AI ChatBot
+Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot
 
 ## Team Members
 
@@ -12,6 +10,7 @@ A private AI ChatBot
 - Joe Scott
 - Caleb Stewart
 - Shawn Noon
+- Jens Boerman
 
 ## Flask Tutorials
 
