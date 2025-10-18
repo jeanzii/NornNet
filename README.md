@@ -30,6 +30,8 @@ Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot th
 
 ## AI ChatBot Project (Private AI options)
 
+- Please watch: [Video about Guild Project](https://wnccnet-my.sharepoint.com/:v:/g/personal/loringw_wncc_edu/EQc3SGTfIatAkoM0KrAEeMcBv-unJKhR9tElYD93-XLvCA?e=ixGNOO) (10-16-25)
+
 Python Flask project to create a web chatbot. Private mode: host an open-source model yourself (local server, private cloud, or on-prem) for full control over data and privacy.
 
 ### Project Outline: Flask Chatbot (Private AI)
