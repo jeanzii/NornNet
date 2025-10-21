@@ -27,6 +27,8 @@ Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot th
 - [Part 1 - Run Ollama with Python in 5 Minutes (Full Setup Guide](https://youtu.be/7uTt5t0B3H0?si=wlLhD5IsrULHp54X)
 - [Part 2 - Local Ollama Chatbot in Python](https://youtu.be/CJVR4HE_j-0?si=2_1ByW7LU14GOgZ7)
 - [Demo Creating an App Using Ollama OpenAI Python Client](https://notes.kodekloud.com/docs/Running-Local-LLMs-With-Ollama/Building-AI-Applications/Demo-Creating-an-App-Using-Ollama-OpenAI-Python-Client)
+- [How to Create Your Own AI Chatbot Like DeepSeek with Ollama in Python Flask](https://www.codewithfaraz.com/python/112/how-to-create-your-own-ai-chatbot-like-deepseek-with-ollama-in-python-flask)
+
 
 ## AI ChatBot Project (Private AI options)
 
@@ -56,16 +58,17 @@ High level: Client (browser) -> Flask app -> (Private model server) -> Flask -> 
 
 The implementation is split into phases so the team can ship incrementally.
 
-#### Phase 1 — Basic Flask Server & UI
+#### Phase 1 — Basic Flask Server & UI & Ollama Backend
 
 - Create `app.py` with routes for the homepage (`/`) and chat (`/chat`).
 - Build `index.html` with a chat history, input, and send button.
 - Implement minimal CSS to make the UI usable.
+- Import Ollama and download ollam Gemma 3:4b Model
+- Download the student handbook onto the server for the AI to refrence
 
 #### Phase 2 — Frontend-Backend Communication
 
 - Use `main.js` to send user messages to `/chat` and append both user and bot messages to the DOM.
-- Implement a temporary backend response for testing (hardcoded echo).
 
 #### Phase 3 — Private AI Integration (self-hosted)
 
