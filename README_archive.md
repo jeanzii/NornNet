@@ -1,6 +1,6 @@
 # NornNet
 
-Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot that rocks!
+Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot
 
 ## Team Members
 
@@ -27,12 +27,8 @@ Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot th
 - [Part 1 - Run Ollama with Python in 5 Minutes (Full Setup Guide](https://youtu.be/7uTt5t0B3H0?si=wlLhD5IsrULHp54X)
 - [Part 2 - Local Ollama Chatbot in Python](https://youtu.be/CJVR4HE_j-0?si=2_1ByW7LU14GOgZ7)
 - [Demo Creating an App Using Ollama OpenAI Python Client](https://notes.kodekloud.com/docs/Running-Local-LLMs-With-Ollama/Building-AI-Applications/Demo-Creating-an-App-Using-Ollama-OpenAI-Python-Client)
-- [How to Create Your Own AI Chatbot Like DeepSeek with Ollama in Python Flask](https://www.codewithfaraz.com/python/112/how-to-create-your-own-ai-chatbot-like-deepseek-with-ollama-in-python-flask)
-
 
 ## AI ChatBot Project (Private AI options)
-
-- Please watch: [Video about Guild Project](https://wnccnet-my.sharepoint.com/:v:/g/personal/loringw_wncc_edu/EQc3SGTfIatAkoM0KrAEeMcBv-unJKhR9tElYD93-XLvCA?e=ixGNOO) (10-16-25)
 
 Python Flask project to create a web chatbot. Private mode: host an open-source model yourself (local server, private cloud, or on-prem) for full control over data and privacy.
 
@@ -58,33 +54,16 @@ High level: Client (browser) -> Flask app -> (Private model server) -> Flask -> 
 
 The implementation is split into phases so the team can ship incrementally.
 
-#### Phase 1 — Basic Flask Server & UI & Ollama Backend
+#### Phase 1 — Basic Flask Server & UI
 
-- Create `main_app.py` with routes for the homepage (`/`) and chat (`/chat`).
+- Create `app.py` with routes for the homepage (`/`) and chat (`/chat`).
 - Build `index.html` with a chat history, input, and send button.
 - Implement minimal CSS to make the UI usable.
-<<<<<<< HEAD
-- Install ollama on Windows server
-  - pip install ollama
-  - Download the [Ollama installer](https://ollama.com/download) 
-  - Open a command prompt or PowerShell window in the directory where the installer is located. 
-  - Run the installer with the /DIR argument.
-    - .\OllamaSetup.exe /DIR=D:\MYDIRECTORY
-  - Download and install AlwaysUp
-
-Start AlwaysUp.
-
-Select Application > Add to open the Add Application window: 
-
-
-=======
-- Import Ollama and download ollam Gemma 3:4b Model
-- Download the student handbook onto the server for the AI to refrence
->>>>>>> f3194ec53fe17e56dc616b0bdd6eafe5ba709d9d
 
 #### Phase 2 — Frontend-Backend Communication
 
 - Use `main.js` to send user messages to `/chat` and append both user and bot messages to the DOM.
+- Implement a temporary backend response for testing (hardcoded echo).
 
 #### Phase 3 — Private AI Integration (self-hosted)
 
