@@ -29,22 +29,21 @@ Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot th
 - [Demo Creating an App Using Ollama OpenAI Python Client](https://notes.kodekloud.com/docs/Running-Local-LLMs-With-Ollama/Building-AI-Applications/Demo-Creating-an-App-Using-Ollama-OpenAI-Python-Client)
 - [How to Create Your Own AI Chatbot Like DeepSeek with Ollama in Python Flask](https://www.codewithfaraz.com/python/112/how-to-create-your-own-ai-chatbot-like-deepseek-with-ollama-in-python-flask)
 
-
 ## AI ChatBot Project (Private AI options)
 
 - Please watch: [Video about Guild Project](https://wnccnet-my.sharepoint.com/:v:/g/personal/loringw_wncc_edu/EQc3SGTfIatAkoM0KrAEeMcBv-unJKhR9tElYD93-XLvCA?e=ixGNOO) (10-16-25)
 
 Python Flask project to create a web chatbot. Private mode: host an open-source model yourself (local server, private cloud, or on-prem) for full control over data and privacy.
 
-### Project Outline: Flask Chatbot (Private AI)
+## Project Outline: Flask Chatbot (Private AI)
 
-#### 1. Project Goal 🎯
+## 1. Project Goal 🎯
 
 Build a reliable web chatbot. The app should let users exchange messages with an AI model and see streamed responses.
 
 - Privacy-first solution running a private model server (containerized) with secure access and logging controls.
 
-#### 2. Key Technologies
+## 2. Key Technologies
 
 - **Backend**: Python, Flask, Waitress (chat endpoint and API connector)
 - **Frontend**: HTML, CSS, JavaScript 
@@ -52,15 +51,16 @@ Build a reliable web chatbot. The app should let users exchange messages with an
 
 ---
 
-### 3. Architecture & Implementation Plan
+## 3. Architecture & Implementation Plan
 
 High level: Client (browser) -> Flask app -> (Private model server) -> Flask -> browser.
 
 The implementation is split into phases so the team can ship incrementally.
 
-#### Phase 1 — Basic Flask Server, UI & Ollama Backend
+## Phase 1:Basic Flask Server, UI & Ollama Backend
 
-**Install ollama on Windows 2025 Server**
+### ✅ Install ollama on Windows 2025 Server
+
 1. Download the latest [Ollama Release](https://github.com/ollama/ollama/releases) (e.g., ollama-windows-amd64.zip)
 2. Extract the zip file --> place all files in c:\ollama
 3. Add to system environment variables: c:\ollama
@@ -71,86 +71,91 @@ The implementation is split into phases so the team can ship incrementally.
   
     ```ollama pull llama3.1```
 
-**Set Up Ollama as a Windows Service (using NSSM)**
+### ✅ Set Up Ollama as a Windows Service (using NSSM)
 
 This ensures Ollama starts automatically with the server and restarts if it ever crashes, without requiring a user to be logged in.
 
 Step 1: Download NSSM
 
-- Go to the [NSSM download page](https://nssm.cc/download).
-- Download the latest release (e.g., nssm-2.24.zip).
-- Extract the ZIP file to a permanent location on your server, like C:\nssm
+1. Go to the [NSSM download page](https://nssm.cc/download).
+2. Download the latest release (e.g., nssm-2.24.zip).
+3. Extract the ZIP file to a permanent location on your server, like C:\nssm
 
 Step 2: Configure the Ollama Service with NSSM
+
 1. Open an Administrator Command Prompt or Administrator PowerShell.
 
    ```nssm install Ollama``` 
 
 This will open the NSSM service installer GUI.
 
-    Application Tab:
+  Application Tab:
 
-        Path: Click the ... button and navigate to your ollama.exe file. (Again, likely C:\Users\YourUser\AppData\Local\Programs\Ollama\ollama.exe).
+  1. Path: Click the ... button and navigate to your ollama.exe file.
+  2. Startup directory: This should automatically populate to the correct folder.
+  3. Arguments: This is the most important part. Enter ```serve``` This tells Ollama to run as a server.
+  4. Log on Tab: For a server, it's best to run this as a Local System account. Select the ```Local System account``` radio button. This allows the service to run even when no user is logged in.
+  5. Environment Tab: This is critical for allowing your Flask server to access Ollama.
+     1. In the Environment variables box, add the following key-value pair:
 
-        Startup directory: This should automatically populate to the correct folder (e.g., C:\Users\YourUser\AppData\Local\Programs\Ollama).
+        ```OLLAMA_HOST=0.0.0.0```
 
-        Arguments: This is the most important part. Enter serve. This tells Ollama to run as a server.
-
-    Log on Tab:
-
-        For a server, it's best to run this as a Local System account. Select the "Local System account" radio button. This allows the service to run even when no user is logged in.
-
-    Environment Tab:
-
-        This is critical for allowing your Flask server to access Ollama.
-
-In the Environment variables box, add the following key-value pair:
-
-```OLLAMA_HOST=0.0.0.0```
-
-        This tells Ollama to listen for requests on all network interfaces, not just localhost.
-
-    Click the Install service button. You should see a "Service 'Ollama' installed successfully!" message.
+      This tells Ollama to listen for requests on all network interfaces, not just localhost.
+  6. Click the ```Install service``` button. You should see a "Service 'Ollama' installed successfully!" message.
 
 Step 3: Start the Service
 
-    Open the Windows Services app (run services.msc).
+1. Open the Windows Services app (run services.msc).
+2. Find your new service named Ollama.
+3. Right-click it and select Start.
+4. Verify it's working: Open your server's web browser and navigate to
+  
+   ```http://localhost:11434```
 
-    Find your new service named Ollama.
+5. You should see the message "Ollama is running."
 
-    Right-click it and select Start.
+The Ollama server is now running as a persistent service on port 11434, accessible from other machines on your network.
 
-    Verify it's working: Open your server's web browser and navigate to http://localhost:11434. You should see the message "Ollama is running."
+☐ Todo — Draft README
+🔄 In progress — Add examples and docs
+✅ Complete — Initial release
 
-Your Ollama server is now running as a persistent service on port 11434, accessible from other machines on your network.
+## Flask Web Server
 
+🔄 In progress
 
-**Flask Web Server**
 - Create `main_app.py` with routes for the homepage (`/`) and chat (`/chat`).
 - Build `index.html` with a chat history, input, and send button.
 - Implement minimal CSS to make the UI usable.
 - Create virtual environment
   - pip install ollama (Install python ollama library)
 
+## Phase 2: Frontend-Backend Communication
 
-#### Phase 2 — Frontend-Backend Communication
+☐ Todo
 
 - Use `main.js` to send user messages to `/chat` and append both user and bot messages to the DOM.
 
-#### Phase 3 — Private AI Integration (self-hosted)
+## Phase 3 — Private AI Integration (self-hosted)
+
+☐ Todo
 
 - CPU-only machines: prefer quantized models (GGML / llama.cpp) or small transformer models.
 - Create a model server and expose an internal HTTP endpoint.
 - Secure the private server: mTLS / API key, and run behind an IIS server which runs waitress
 - Add support for streaming responses if the model server supports it.
 
-#### Phase 4 — Privacy, Logging & Data Handling
+## Phase 4 — Privacy, Logging & Data Handling
+
+☐ Todo
 
 - Decide what to log (timestamps, anonymized session id, message length). Avoid storing PII by default.
 - Add a user-facing privacy notice and an opt-out for logging.
 - Implement retention policy and a script to sweep/delete logs older than X days.
 
-#### Phase 5 — Deploy & Ops
+## Phase 5 — Deploy & Ops
+
+☐ Todo
 
 - Add health checks, simple metrics (request counts, success/failure), and basic monitoring instructions.
 
