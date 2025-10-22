@@ -82,10 +82,9 @@ Step 1: Download NSSM
 - Extract the ZIP file to a permanent location on your server, like C:\nssm
 
 Step 2: Configure the Ollama Service with NSSM
+1. Open an Administrator Command Prompt or Administrator PowerShell.
 
-- Open an Administrator Command Prompt or Administrator PowerShell.
-
-```nssm install Ollama``` 
+   ```nssm install Ollama``` 
 
 This will open the NSSM service installer GUI.
 
@@ -105,11 +104,9 @@ This will open the NSSM service installer GUI.
 
         This is critical for allowing your Flask server to access Ollama.
 
-        In the Environment variables box, add the following key-value pair:
+In the Environment variables box, add the following key-value pair:
 
-        Key: OLLAMA_HOST
-
-        Value: 0.0.0.0
+```OLLAMA_HOST=0.0.0.0```
 
         This tells Ollama to listen for requests on all network interfaces, not just localhost.
 
