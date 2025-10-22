@@ -3,8 +3,24 @@
 {% block title %}NornNet - Home{% endblock %}
 
 {% block content %}
-  <div class="card">
+  <!-- Page container -->
+  <div class="card" style="text-align:center; padding:20px;">
     <h1>NornNet</h1>
     <p>Welcome to NornNet - Where the Fates Weave Destiny with a Touch of AI Magic</p>
+
+    <!-- Chat Interface -->
+    <div id="chatbox" 
+         style="border: 1px solid #ccc; background: white; padding: 10px; 
+                width: 400px; height: 300px; overflow-y: auto; 
+                margin: 20px auto; text-align: left;">
+    </div>
+
+    <!-- User Input and Button -->
+    <div style="margin-top: 10px;">
+      <input type="text" id="user_input" placeholder="Ask something..." 
+             style="width: 300px; padding: 8px;">
+      <button onclick="sendMessage()" style="padding: 8px 12 px; margin-left: 5px;">Send</button>
+    </div>
   </div>
+
 {% endblock %}
