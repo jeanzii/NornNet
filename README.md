@@ -56,9 +56,22 @@ The implementation is split into phases so the team can ship incrementally.
 
 #### Phase 1 — Basic Flask Server & UI
 
-- Create `app.py` with routes for the homepage (`/`) and chat (`/chat`).
+- Create `main_app.py` with routes for the homepage (`/`) and chat (`/chat`).
 - Build `index.html` with a chat history, input, and send button.
 - Implement minimal CSS to make the UI usable.
+- Install ollama on Windows server
+  - pip install ollama
+  - Download the [Ollama installer](https://ollama.com/download) 
+  - Open a command prompt or PowerShell window in the directory where the installer is located. 
+  - Run the installer with the /DIR argument.
+    - .\OllamaSetup.exe /DIR=D:\MYDIRECTORY
+  - Download and install AlwaysUp
+
+Start AlwaysUp.
+
+Select Application > Add to open the Add Application window: 
+
+
 
 #### Phase 2 — Frontend-Backend Communication
 
