@@ -57,7 +57,7 @@ High level: Client (browser) -> Flask app -> (Private model server) -> Flask -> 
 
 The implementation is split into phases so the team can ship incrementally.
 
-## Phase 1:Basic Flask Server, UI & Ollama Backend
+## Phase 1: Setup Flask Server & Ollama Backend
 
 ### ✅ Install ollama on Windows 2025 Server
 
@@ -65,9 +65,10 @@ The implementation is split into phases so the team can ship incrementally.
 2. Extract the zip file --> place all files in c:\ollama
 3. Add to system environment variables: c:\ollama
 4. Verify installation: Open a Command Prompt:
-  
-   ```ollama --version``` 
-  - Pull a Model to test with: 
+
+   ```ollama --version```
+
+5. Pull a Model to test with:
   
     ```ollama pull llama3.1```
 
@@ -85,30 +86,41 @@ Step 2: Configure the Ollama Service with NSSM
 
 1. Open an Administrator Command Prompt or Administrator PowerShell.
 
-   ```nssm install Ollama``` 
+   ```nssm install Ollama```
 
 This will open the NSSM service installer GUI.
 
-  Application Tab:
+Application Tab:
 
-  1. Path: Click the ... button and navigate to your ollama.exe file.
-  2. Startup directory: This should automatically populate to the correct folder.
-  3. Arguments: This is the most important part. Enter ```serve``` This tells Ollama to run as a server.
-  4. Log on Tab: For a server, it's best to run this as a Local System account. Select the ```Local System account``` radio button. This allows the service to run even when no user is logged in.
-  5. Environment Tab: This is critical for allowing your Flask server to access Ollama.
-     1. In the Environment variables box, add the following key-value pair:
+1. Path: Click the ... button and navigate to your ollama.exe file.
+2. Startup directory: This should automatically populate to the correct folder.
+3. Arguments: This is the most important part. Enter:
 
-        ```OLLAMA_HOST=0.0.0.0```
+   ```serve```
+  
+This tells Ollama to run as a server.
 
-      This tells Ollama to listen for requests on all network interfaces, not just localhost.
-  6. Click the ```Install service``` button. You should see a "Service 'Ollama' installed successfully!" message.
+4. Log on Tab: For a server, it's best to run this as a Local System account. Select the
+
+ ```Local System account```
+
+ radio button. This allows the service to run even when no user is logged in.
+ 
+ 5. Environment Tab: This is critical for allowing your Flask server to access Ollama.
+ 6. In the Environment variables box, add the following key-value pair:
+
+   ```OLLAMA_HOST=0.0.0.0```
+
+  This tells Ollama to listen for requests on all network interfaces, not just localhost.
+
+  7. Click the ```Install service``` button. You should see a "Service 'Ollama' installed successfully!" message.
 
 Step 3: Start the Service
 
 1. Open the Windows Services app (run services.msc).
 2. Find your new service named Ollama.
 3. Right-click it and select Start.
-4. Verify it's working: Open your server's web browser and navigate to
+4. Verify it's working: Open your server's web browser and navigate to:
   
    ```http://localhost:11434```
 
@@ -128,7 +140,9 @@ The Ollama server is now running as a persistent service on port 11434, accessib
 - Build `index.html` with a chat history, input, and send button.
 - Implement minimal CSS to make the UI usable.
 - Create virtual environment
-  - pip install ollama (Install python ollama library)
+  - Install python ollama library:
+
+     ```pip install ollama```
 
 ## Phase 2: Frontend-Backend Communication
 
