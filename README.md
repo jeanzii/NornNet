@@ -6,7 +6,7 @@ Where the Fates Weave Destiny with a Touch of AI Magic - A private AI ChatBot th
 
 - Elizier Lamien
 - Owen Osmera
-- Christi Pendergraft
+- Christi G Pendergraft
 - Joe Scott
 - Caleb Stewart
 - Shawn Noon
@@ -66,6 +66,7 @@ The implementation is split into phases so the team can ship incrementally.
 2. Extract the zip file --> place all files in c:\ollama
 3. Add to system environment variables: c:\ollama
 4. Verify installation: Open a Command Prompt:
+5. Verify that the test model on the server is Gemma3:4b
 
    ```ollama --version```
 
